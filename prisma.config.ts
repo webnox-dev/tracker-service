@@ -1,8 +1,8 @@
 import 'dotenv/config';
 
-import { defineConfig, env } from 'prisma/config';
+import { defineConfig } from 'prisma/config';
 
-const migrationConnectionUrl = process.env.DIRECT_URL ?? env('DATABASE_URL');
+const migrationConnectionUrl = process.env.DIRECT_URL ?? process.env.DATABASE_URL ?? 'postgresql://postgres:postgres@localhost:5432/tracker_service';
 
 export default defineConfig({
   schema: 'prisma/schema.prisma',
