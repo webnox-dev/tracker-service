@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum TrackingEventType {
+  PAGE_VIEW
+  CLICK
+  FORM_SUBMIT
+  DOWNLOAD
+  VIDEO_PLAY
+  CUSTOM
+}
+
+model TrackingEvent {
+  id               String            @id @default(uuid()) @db.Uuid
+  anonymousId      String            @db.Uuid
+  sessionId        String            @db.Uuid
+  accountId        String            @db.VarChar(100)
+  eventType        TrackingEventType
+  url              String            @db.Text
+  path             String            @db.VarChar(2048)
+  title            String?           @db.VarChar(255)
+  referrer         String?           @db.Text
+  timestamp        DateTime
+  timeOnPage       Int?
+  scrollPercentage Int?
+  metadata         Json?
+  createdAt        DateTime          @default(now())
+
+  @@index([accountId])
+  @@index([sessionId])
+  @@index([timestamp])
+  @@map("tracking_events")
+}
+
+model Site {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String   @db.VarChar(255)
+  domain      String   @db.VarChar(255)
+  apiKey      String   @unique @db.VarChar(100)
+  status      String   @default("enabled") @db.VarChar(50)
+  description String?  @db.Text
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("sites")
+}
+

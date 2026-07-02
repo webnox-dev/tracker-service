@@ -1,0 +1,53 @@
+{
+  "name": "tracker-service",
+  "version": "1.0.0",
+  "description": "Phase 1 Tracker Service for the B2B Intent Platform",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "nest build",
+    "start": "node dist/main.js",
+    "start:dev": "nest start --watch",
+    "start:prod": "node dist/main.js",
+    "lint": "eslint \"src/**/*.ts\"",
+    "format": "prettier --write \"{src,prisma,test}/**/*.{ts,js,json,md,yml,yaml}\"",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:deploy": "prisma migrate deploy",
+    "db:seed": "prisma db seed"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.1.27",
+    "@nestjs/config": "^4.0.4",
+    "@nestjs/core": "^11.1.27",
+    "@nestjs/platform-express": "^11.1.27",
+    "@nestjs/swagger": "^11.4.4",
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^7.8.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
+    "pg": "^8.22.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@nestjs/cli": "^11.0.23",
+    "@nestjs/schematics": "^11.1.0",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.0.1",
+    "eslint": "^10.6.0",
+    "eslint-plugin-prettier": "^5.5.6",
+    "globals": "^17.7.0",
+    "prettier": "^3.8.5",
+    "prisma": "^7.8.0",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.62.0"
+  }
+}
