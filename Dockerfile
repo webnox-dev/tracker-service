@@ -12,7 +12,7 @@ FROM base AS build
 
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY package*.json ./
-COPY nest-cli.json tsconfig*.json ./
+COPY nest-cli.json tsconfig*.json prisma.config.ts ./
 COPY prisma ./prisma
 COPY src ./src
 RUN npx prisma generate
@@ -26,6 +26,7 @@ COPY package*.json ./
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/prisma ./prisma
+COPY --from=build /app/prisma.config.ts ./
 
 EXPOSE 3001
 
