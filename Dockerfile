@@ -11,6 +11,7 @@ RUN npm ci
 FROM base AS build
 
 COPY --from=dependencies /app/node_modules ./node_modules
+COPY package*.json ./
 COPY nest-cli.json tsconfig*.json ./
 COPY prisma ./prisma
 COPY src ./src
